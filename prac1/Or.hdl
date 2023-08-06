@@ -12,8 +12,5 @@
     Not(in=b, out=notb);
     
     // Get the NAND of the negated inputs
-    Nand(a=nota, b=notb, out=nandOut);
-
-    // Negate the output of the NAND to get the OR result
-    Not(in=nandOut, out=out);
+    Nand(a=nota, b=notb, out=out);
 }
