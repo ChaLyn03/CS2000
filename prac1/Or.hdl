@@ -2,15 +2,12 @@
  * Emulating OR operation using NAND and NOT gates.
  */
 
- CHIP OrUsingNandAndNot {
+ CHIP Or {
     IN a, b;
     OUT out;
 
     PARTS:
-    // Negate both inputs 'a' and 'b'
-    Not(in=a, out=nota);
-    Not(in=b, out=notb);
-    
-    // Get the NAND of the negated inputs
-    Nand(a=nota, b=notb, out=out);
+        Not(a=in,out=nota)
+        Not(b=in,out=notb)
+        Nand(nota=in,notb=in,out=out)
 }
