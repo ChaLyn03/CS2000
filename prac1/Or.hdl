@@ -1,18 +1,19 @@
-// This file is part of www.nand2tetris.org
-// and the book "The Elements of Computing Systems"
-// by Nisan and Schocken, MIT Press.
-// File name: projects/01/Or.hdl
-
- /**
- * Or gate:
- * out = 1 if (a == 1 or b == 1)
- *       0 otherwise
+/**
+ * Emulating OR operation using NAND and NOT gates.
  */
 
-CHIP Or {
+ CHIP OrUsingNandAndNot {
     IN a, b;
     OUT out;
 
     PARTS:
-    // Put your code here:
+    // Negate both inputs 'a' and 'b'
+    Not(in=a, out=nota);
+    Not(in=b, out=notb);
+    
+    // Get the NAND of the negated inputs
+    Nand(a=nota, b=notb, out=nandOut);
+
+    // Negate the output of the NAND to get the OR result
+    Not(in=nandOut, out=out);
 }
