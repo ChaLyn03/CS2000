@@ -1,18 +1,23 @@
-// This file is part of www.nand2tetris.org
-// and the book "The Elements of Computing Systems"
-// by Nisan and Schocken, MIT Press.
-// File name: projects/01/Mux.hdl
-
-/** 
- * Multiplexor:
- * out = a if sel == 0
+/**
+ * Mux gate:
+ * out = a if sel=0
  *       b otherwise
  */
 
-CHIP Mux {
+ CHIP Mux {
     IN a, b, sel;
     OUT out;
 
     PARTS:
-    // Put your code here:
+    // Negate the selector for one of the pathways
+    Not(in=sel, out=notSel);
+    
+    // When sel is 0, notSel is 1, so this gives a AND 1 (i.e., a), otherwise it's 0.
+    And(a=a, b=notSel, out=aAndNotSel);
+
+    // When sel is 1, this gives b AND 1 (i.e., b), otherwise it's 0.
+    And(a=b, b=sel, out=bAndSel);
+
+    // Combine the two pathways using OR. Only one of them can be non-zero based on sel.
+    Or(a=aAndNotSel, b=bAndSel, out=out);
 }

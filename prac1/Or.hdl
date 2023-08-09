@@ -1,13 +1,9 @@
-/**
- * Emulating OR operation using NAND and NOT gates.
- */
-
- CHIP Or {
+CHIP Or {
     IN a, b;
     OUT out;
 
     PARTS:
-        Not(a=in,out=nota)
-        Not(b=in,out=notb)
-        Nand(nota=in,notb=in,out=out)
+        Not(in=a, out=nota);
+        Not(in=b, out=notb);
+        Nand(a=nota, b=notb, out=out);
 }
