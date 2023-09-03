@@ -41,7 +41,7 @@ CHIP Decode {
         Mux(a=false, b=in[6], sel=type, out=c6);
         
         // Decode the destination wires
-        Mux(a=false, b=in[5], sel=type, out=d1);
+        Mux(a=true, b=in[5], sel=type, out=d1);
         Mux(a=false, b=in[4], sel=type, out=d2);
         Mux(a=false, b=in[3], sel=type, out=d3);
         
