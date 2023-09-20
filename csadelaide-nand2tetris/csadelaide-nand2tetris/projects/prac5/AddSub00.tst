@@ -19,4 +19,3 @@ set RAM[1] 3,  // Restore arguments in case program used them
 set RAM[2] 2,
 set RAM[3] 1,
 output;        // Output to file
-
