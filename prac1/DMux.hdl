@@ -1,0 +1,20 @@
+/**
+ * DMux gate:
+ * if sel=0 then {a=in, b=0}
+ * else         {a=0, b=in}
+ */
+
+ CHIP DMux {
+    IN in, sel;
+    OUT a, b;
+
+    PARTS:
+    // Negate the selector to control the a output
+    Not(in=sel, out=notSel);
+    
+    // If sel is 0, notSel is 1, so this will give in AND 1 (i.e., in), setting output a.
+    And(a=in, b=notSel, out=a);
+
+    // If sel is 1, this will give in AND 1 (i.e., in), setting output b.
+    And(a=in, b=sel, out=b);
+}
